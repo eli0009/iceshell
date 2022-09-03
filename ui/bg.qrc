@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>res/ui_bg.png</file>
+  </qresource>
+</RCC>
