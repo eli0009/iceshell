@@ -3,6 +3,8 @@
 A GUI for [Real-CUGAN ncnn Vulkan](https://github.com/nihui/realcugan-ncnn-vulkan), a command-line AI anime image upscale program.
 Iceshell is available on Linux and Windows.
 
+![Preview](preview.png)
+
 A GPU is required to run this program!
 
 ## Installation
