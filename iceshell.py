@@ -2,8 +2,7 @@ import sys, subprocess
 from platform import system
 from pathlib import Path
 from ddlabel import DdLabel
-from PyQt5.QtWidgets import (QComboBox, QPushButton, QFileDialog, QDialog,
-                             QMainWindow, QApplication, QProgressBar)
+from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, uic
 
 
@@ -22,33 +21,64 @@ class MainWindow(QMainWindow):
         #load the UI files
         uic.loadUi(str(root / 'ui/main_window.ui'), self)
 
-        #define widgets from the UI file
-        self.comboBox_upscale = self.findChild(QComboBox, "comboBox_upscale")
-        self.comboBox_upscale.setCurrentText("2") #fix the default value
-        self.comboBox_denoise = self.findChild(QComboBox, "comboBox_denoise")
-        self.comboBox_outext = self.findChild(QComboBox, "comboBox_outext")
+        '''
+        Menubar
+        '''
+        menubar = self.findChild(QMenuBar, "menuBar")
 
-        #about button
-        button_about = self.findChild(QPushButton, "pushButton_about")
-        button_about.clicked.connect(self.popup)
+        #upscale menu
+        self.upscale_group = QActionGroup(self)
+        upscale_actions = [
+            self.findChild(QAction, action) for action in
+            ("action1_3", "action2_3", "action3_3", "action4_2")
+        ]
+        for i in upscale_actions:
+            self.upscale_group.addAction(i)
 
-        """
-        file output
-        """
-        self.comboBox_outdir = self.findChild(QComboBox, "comboBox_outdir")
-        self.button_selector_out = self.findChild(QPushButton,
-                                                  "pushButton_selector_out")
-        self.comboBox_outdir.activated.connect(self.file_selector)
-        self.button_selector_out.clicked.connect(self.file_selector)
-        #placeholder output folder
+        #denoise menu
+        self.denoise_group = QActionGroup(self)
+        denoise_actions = [
+            self.findChild(QAction, action) for action in
+            ("action_2", "action0_2", "action1_4", "action2_4", "action3_4")
+        ]
+        for i in denoise_actions:
+            self.denoise_group.addAction(i)
+
+        #output extension menu
+        self.ext_group = QActionGroup(self)
+        ext_actions = [
+            self.findChild(QAction, action) for action in
+            ("actionSame", "actionjpg_2", "actionpng_2", "actionwebp_2")
+        ]
+        for i in ext_actions:
+            self.ext_group.addAction(i)
+
+        #output folder menu
+        self.folder_group = QActionGroup(self)
+        folder_actions = [
+            self.findChild(QAction, action) for action in
+            ("actionSame_as_input_2", "actionSelect_2")
+        ]
+        for i in folder_actions:
+            self.folder_group.addAction(i)
+        
+        self.same_as_input = folder_actions[0]
         self.outfolder = None
+        self.folder_group.triggered.connect(self.folder_selector)
+
+        #about menu
+        about = self.findChild(QAction, "actionAbout_2")
+        about.triggered.connect(self.popup)
+
+        # #progress bar
+        # self.progress_bar = QProgressBar(self)
+        # self.progress_bar.setValue(100)
 
         """
         file input
         """
         self.label_file_input = self.findChild(DdLabel, "label_file_input")
         self.label_file_input.signal.dropped.connect(self.image_upscale)
-        self.progress_bar = self.findChild(QProgressBar, "progressBar")
         
     def popup(self):
         '''
@@ -61,39 +91,29 @@ class MainWindow(QMainWindow):
     def display_values(self):
         '''Return the current value of various comboboxes as a dict'''
         return {
-            'upscale': self.comboBox_upscale.currentText(),
-            'denoise': self.comboBox_denoise.currentText(),
-            'outext': self.comboBox_outext.currentText(),
-            'outdir': self.comboBox_outdir.currentText(),
+            'upscale': self.upscale_group.checkedAction().text(),
+            'denoise': self.denoise_group.checkedAction().text(),
+            'outext': self.ext_group.checkedAction().text(),
         }
 
-    def file_selector(self):
+    def folder_selector(self):
         '''
-        Launch a file selector if the output dir combobox is on the right option
-        Otherwise disable
+        Launch a file selector and set outfolder to the user selected folder
+        set outfolder to None if selected folder is not valid
         '''
-        if self.display_values().get('outdir') == 'Select...':
-            self.button_selector_out.setDisabled(False)
+        if self.folder_group.checkedAction().text() == 'Select...':
             folder = QFileDialog.getExistingDirectory(self,
-                                                      "Select Output Folder")
-            #reset outfolder to none if not valid
-            self.outfolder = Path(folder) if folder else None
+                                                        "Select Output Folder")
 
-            if self.outfolder:
-                self.button_selector_out.setText("Output Folder Selected!")
-                self.button_selector_out.setToolTip(str(self.outfolder))
+            if folder:
+                self.outfolder = Path(folder)
             else:
-                self.button_selector_out.setText("Click to Select Output Folder!")
-                self.button_selector_out.setToolTip(
-                    "No output folder selected! Using same folder as input"
-                    )
-
-        #if the outdir combobox is on the wrong option disable output button
+                self.outfolder = None
+                self.same_as_input.setChecked(True)
         else:
-            self.button_selector_out.setDisabled(True)
-            self.button_selector_out.setText("Same Folder as Input")
-            self.button_selector_out.setToolTip("Using same folder as input")
             self.outfolder = None
+
+        print(self.outfolder)
 
     def image_upscale(self):
         '''
@@ -102,15 +122,10 @@ class MainWindow(QMainWindow):
         #get all the data previously obtained
         values = self.display_values()
         images = self.label_file_input.files
-
         
-        #error checking and fixing
-        if values.get('outdir') != 'Same' and self.outfolder is None:
-            values['outdir'] = 'Same'
-        
-        #prepare progressbar for processing
-        self.progress_bar.setValue(0)
-        increment = 100 // len(images)
+        # #prepare progressbar for processing
+        # self.progress_bar.setValue(0)
+        # increment = 100 // len(images)
 
         for image in images:
             """
@@ -122,17 +137,17 @@ class MainWindow(QMainWindow):
             /home/user/ (folder)
             """
             image = Path(image)
-            image_ext = image.suffix[1:]
+            image_ext = image.suffix
             image_name = image.stem
             image_folder = image.parent
             image = str(image)
 
             #get the right output extension
             outext = values['outext']
-            if outext == 'Same':
+            if outext == 'Same as Input':
                 outext = image_ext
             #get the right output folder
-            if values.get('outdir') == 'Same':
+            if self.outfolder is None:
                 outfolder = image_folder
             else:
                 outfolder = self.outfolder
@@ -143,8 +158,7 @@ class MainWindow(QMainWindow):
                 outfolder / (
                     image_name +
                     (f'_CUGAN{"_x" + outupscale if outupscale != "1" else ""}') +
-                    (f'_n{outdenoise}' if outdenoise != '-1' else '') + 
-                    '.' + outext
+                    (f'_n{outdenoise}' if outdenoise != '-1' else '') + outext
                     )
             )
 
@@ -153,9 +167,9 @@ class MainWindow(QMainWindow):
                     image, '-o', outimage, '-s', outupscale, '-n', outdenoise]
             subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
             print(outimage) 
-            self.progress_bar.setValue(self.progress_bar.value() + increment)
+            # self.progress_bar.setValue(self.progress_bar.value() + increment)
         
-        self.progress_bar.setValue(100)
+        # self.progress_bar.setValue(100)
 
 
 class PopupWindow(QDialog):
