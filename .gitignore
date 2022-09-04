@@ -1,2 +1,7 @@
 __pycache__/
+build/
+dist/
+manual/
 sample_test_data/
+sample_test_data_testing/
+ui_dev/

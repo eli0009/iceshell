@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>708</width>
-    <height>500</height>
+    <height>433</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>708</width>
-    <height>500</height>
+    <height>433</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>708</width>
-    <height>500</height>
+    <height>433</height>
    </size>
   </property>
   <property name="acceptDrops">
@@ -29,215 +29,11 @@
    <string>Real-CUGAN - Iceshell</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="comboBox_upscale">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>71</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="toolTipDuration">
-     <number>-1</number>
-    </property>
-    <property name="currentText">
-     <string>1</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="pushButton_selector_out">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>10</y>
-      <width>211</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Using same folder as input</string>
-    </property>
-    <property name="text">
-     <string>Same Folder as Input</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Upscale the image by this factor. Set to 2 for best result</string>
-    </property>
-    <property name="text">
-     <string>Upscale</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_denoise">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>40</y>
-      <width>71</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>-1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>0</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>3</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>10</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Remove noise in image. Set to -1 for no denoise</string>
-    </property>
-    <property name="text">
-     <string>Denoise</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_outext">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>40</y>
-      <width>71</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Same</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>png</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>jpg</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>webp</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>10</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Output image has same file type as input image if no file type is selected</string>
-    </property>
-    <property name="text">
-     <string>Out Ext</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_outdir">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>40</y>
-      <width>71</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Same</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Select...</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>10</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Output image to same folder as the input if no folder is selected</string>
-    </property>
-    <property name="text">
-     <string>Out Dir</string>
-    </property>
-   </widget>
    <widget class="DdLabel" name="label_file_input">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>90</y>
+      <y>0</y>
       <width>711</width>
       <height>411</height>
      </rect>
@@ -255,47 +51,68 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>50</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>708</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOutput">
+    <property name="title">
+     <string>Output</string>
     </property>
-    <property name="toolTip">
-     <string>Progress of conversion</string>
-    </property>
-    <property name="value">
-     <number>100</number>
-    </property>
+    <widget class="QMenu" name="menuExtension">
+     <property name="title">
+      <string>Extension</string>
+     </property>
+     <addaction name="actionSame"/>
+     <addaction name="actionjpg_2"/>
+     <addaction name="actionpng_2"/>
+     <addaction name="actionwebp_2"/>
+    </widget>
+    <widget class="QMenu" name="menuFolder">
+     <property name="title">
+      <string>Folder</string>
+     </property>
+     <addaction name="actionSame_as_input_2"/>
+     <addaction name="actionSelect_2"/>
+    </widget>
+    <addaction name="menuExtension"/>
+    <addaction name="menuFolder"/>
    </widget>
-   <widget class="QPushButton" name="pushButton_about">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>10</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
+   <widget class="QMenu" name="menuUpscale">
+    <property name="title">
+     <string>Upscale</string>
     </property>
-    <property name="text">
-     <string>About</string>
-    </property>
+    <addaction name="action1_3"/>
+    <addaction name="action2_3"/>
+    <addaction name="action3_3"/>
+    <addaction name="action4_2"/>
    </widget>
-   <zorder>label_file_input</zorder>
-   <zorder>comboBox_upscale</zorder>
-   <zorder>pushButton_selector_out</zorder>
-   <zorder>label</zorder>
-   <zorder>comboBox_denoise</zorder>
-   <zorder>label_2</zorder>
-   <zorder>comboBox_outext</zorder>
-   <zorder>label_3</zorder>
-   <zorder>comboBox_outdir</zorder>
-   <zorder>label_4</zorder>
-   <zorder>progressBar</zorder>
-   <zorder>pushButton_about</zorder>
+   <widget class="QMenu" name="menuDenoise">
+    <property name="title">
+     <string>Denoise</string>
+    </property>
+    <addaction name="action_2"/>
+    <addaction name="action0_2"/>
+    <addaction name="action1_4"/>
+    <addaction name="action2_4"/>
+    <addaction name="action3_4"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout_2"/>
+   </widget>
+   <addaction name="menuUpscale"/>
+   <addaction name="menuDenoise"/>
+   <addaction name="menuOutput"/>
+   <addaction name="menuHelp"/>
   </widget>
   <action name="action1x">
    <property name="checkable">
@@ -330,6 +147,271 @@
    </property>
    <property name="text">
     <string>4x</string>
+   </property>
+  </action>
+  <action name="action1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="action3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </action>
+  <action name="action4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>4</string>
+   </property>
+  </action>
+  <action name="action_1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>-1</string>
+   </property>
+  </action>
+  <action name="action0">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </action>
+  <action name="action1_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action2_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="action3_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </action>
+  <action name="actionsame">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Same as input</string>
+   </property>
+  </action>
+  <action name="actionjpg">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>jpg</string>
+   </property>
+  </action>
+  <action name="actionpng">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>png</string>
+   </property>
+  </action>
+  <action name="actionwebp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>webp</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSame_as_input">
+   <property name="text">
+    <string>Same as input</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="text">
+    <string>Select...</string>
+   </property>
+  </action>
+  <action name="actionSame">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Same as Input</string>
+   </property>
+  </action>
+  <action name="actionjpg_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.jpg</string>
+   </property>
+  </action>
+  <action name="action1_3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action2_3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="action3_3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </action>
+  <action name="action4_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>4</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>-1</string>
+   </property>
+  </action>
+  <action name="action0_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </action>
+  <action name="action1_4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action2_4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="action3_4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </action>
+  <action name="actionSame_as_input_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Same as Input</string>
+   </property>
+  </action>
+  <action name="actionpng_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.png</string>
+   </property>
+  </action>
+  <action name="actionwebp_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.webp</string>
+   </property>
+  </action>
+  <action name="actionSelect_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Select...</string>
+   </property>
+  </action>
+  <action name="actionAbout_2">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
