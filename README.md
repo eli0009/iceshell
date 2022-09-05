@@ -1,14 +1,16 @@
 # Real-CUGAN - Iceshell
 
-A GUI for [Real-CUGAN ncnn Vulkan](https://github.com/nihui/realcugan-ncnn-vulkan), a command-line AI anime image upscale program.
+Real-CUGAN - Iceshell is a GUI program that upscales and denoises anime-style images.
 Iceshell is available on Linux and Windows.
 
 ![Preview](preview.png)
 
+This program can make your images better and sharper! 
+
 Original image vs ImageMagick upscale vs Real-CUGAN upscale:
 ![comparison](comparison.png)
 
-A GPU is required to run this program!
+A GPU is required to run this program.
 
 ## Installation
 
@@ -38,7 +40,8 @@ Either drag & drop your images or select them by clicking on the main window. Up
 
 [Real-CUGAN](https://github.com/bilibili/ailab/tree/main/Real-CUGAN) is an AI super resolution model for anime images
 
-## Acknowledgement
+## Acknowledgements
 - [Real-CUGAN ncnn Vulkan](https://github.com/nihui/realcugan-ncnn-vulkan) by nihui
+- [BreezeStyleSheets](https://github.com/Alexhuszagh/BreezeStyleSheets)
 - Qt for Python
 - Qt Designer

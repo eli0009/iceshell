@@ -5,3 +5,6 @@ manual/
 sample_test_data/
 sample_test_data_testing/
 ui_dev/
+stylesheets/
+doc.md
+ui/stylesheets/

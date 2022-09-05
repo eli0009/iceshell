@@ -1,8 +1,10 @@
 import sys, subprocess
+import breeze_resources
 from platform import system
 from pathlib import Path
 from ddlabel import DdLabel
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QFile, QTextStream
 from PyQt5 import QtGui, uic
 
 
@@ -183,6 +185,13 @@ if __name__ == '__main__':
     #run the program
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.setWindowIcon(QtGui.QIcon(str(root / 'ui/res/logo.png'))) #add logo
+
+    #styling
+    file = QFile(":/dark-green/stylesheet.qss")
+    file.open(QFile.ReadOnly | QFile.Text)
+    stream = QTextStream(file)
+    app.setStyleSheet(stream.readAll())    
+    window.setWindowIcon(QtGui.QIcon(str(root / 'ui/res/logo.png')))
+    
     window.show()
     app.exec()
