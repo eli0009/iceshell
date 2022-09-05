@@ -187,7 +187,7 @@ if __name__ == '__main__':
     window = MainWindow()
 
     #styling
-    file = QFile(":/dark-green/stylesheet.qss")
+    file = QFile(":/light-green/stylesheet.qss")
     file.open(QFile.ReadOnly | QFile.Text)
     stream = QTextStream(file)
     app.setStyleSheet(stream.readAll())    
