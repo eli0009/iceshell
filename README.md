@@ -6,9 +6,9 @@ Iceshell is available on Linux and Windows.
 
 ![Preview](preview.png)
 
-This program can make your images better and sharper! 
+This program can make your images better and sharper! Below is a comparison of different upscalers' performance. Imagemagick upscale is the result you would get from a conventional image manipulation program such as Krita or Photoshop, which doesn't use AI model.
 
-Original image vs ImageMagick upscale vs Real-CUGAN upscale:
+Original image vs ImageMagick vs Real-CUGAN vs Real-ESRGAN vs Waifu2x:
 ![comparison](comparison.png)
 
 A GPU is required to run this program.
