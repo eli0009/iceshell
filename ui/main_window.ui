@@ -26,7 +26,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Real-CUGAN - Iceshell</string>
+   <string>Iceshell</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="DdLabel" name="label_file_input">
@@ -109,9 +109,18 @@
     </property>
     <addaction name="actionAbout_2"/>
    </widget>
+   <widget class="QMenu" name="menuUpscaler">
+    <property name="title">
+     <string>Upscaler</string>
+    </property>
+    <addaction name="actionReal_CUGAN"/>
+    <addaction name="actionReal_ESRGAN"/>
+    <addaction name="actionWaifu2X"/>
+   </widget>
    <addaction name="menuUpscale"/>
    <addaction name="menuDenoise"/>
    <addaction name="menuOutput"/>
+   <addaction name="menuUpscaler"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="action1x">
@@ -412,6 +421,33 @@
   <action name="actionAbout_2">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionReal_CUGAN">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Real-CUGAN</string>
+   </property>
+  </action>
+  <action name="actionReal_ESRGAN">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Real-ESRGAN</string>
+   </property>
+  </action>
+  <action name="actionWaifu2X">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Waifu2x</string>
    </property>
   </action>
  </widget>

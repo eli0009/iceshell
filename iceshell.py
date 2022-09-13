@@ -30,20 +30,20 @@ class MainWindow(QMainWindow):
 
         #upscale menu
         self.upscale_group = QActionGroup(self)
-        upscale_actions = [
+        self.upscale_actions = [
             self.findChild(QAction, action) for action in
             ("action1_3", "action2_3", "action3_3", "action4_2")
         ]
-        for i in upscale_actions:
+        for i in self.upscale_actions:
             self.upscale_group.addAction(i)
 
         #denoise menu
         self.denoise_group = QActionGroup(self)
-        denoise_actions = [
+        self.denoise_actions = [
             self.findChild(QAction, action) for action in
             ("action_2", "action0_2", "action1_4", "action2_4", "action3_4")
         ]
-        for i in denoise_actions:
+        for i in self.denoise_actions:
             self.denoise_group.addAction(i)
 
         #output extension menu
@@ -68,6 +68,16 @@ class MainWindow(QMainWindow):
         self.outfolder = None
         self.folder_group.triggered.connect(self.folder_selector)
 
+        #upscaler selection menu
+        self.upscaler_group = QActionGroup(self)
+        upscaler_actions = [
+            self.findChild(QAction, action) for action in
+            ("actionReal_CUGAN", "actionReal_ESRGAN", "actionWaifu2X")
+        ]
+        for i in upscaler_actions:
+            self.upscaler_group.addAction(i)
+        self.upscaler_group.triggered.connect(self.selectable_options)
+
         #about menu
         about = self.findChild(QAction, "actionAbout_2")
         about.triggered.connect(self.popup)
@@ -91,11 +101,12 @@ class MainWindow(QMainWindow):
         popup.exec()
 
     def display_values(self):
-        '''Return the current value of various comboboxes as a dict'''
+        '''Return the current value of various option menus as a dict'''
         return {
             'upscale': self.upscale_group.checkedAction().text(),
             'denoise': self.denoise_group.checkedAction().text(),
             'outext': self.ext_group.checkedAction().text(),
+            'upscaler': self.upscaler_group.checkedAction().text().replace('-', '').lower()
         }
 
     def folder_selector(self):
@@ -117,9 +128,40 @@ class MainWindow(QMainWindow):
 
         print(self.outfolder)
 
+    def get_upscaler(self, upscaler):
+        '''
+        Get the path of the selected upscaler
+        '''
+        os = system().lower()
+        if os == 'linux':
+            os = 'ubuntu'
+        upscale_folder = list((root / 'upscalers').glob(f'{upscaler}*{os}'))[0]
+        return (upscale_folder /
+                (upscaler + '-ncnn-vulkan' + ['', '.exe'][os == 'windows']))
+
+    def selectable_options(self):
+        '''
+        Change selectable options depending on the upscaler
+        '''
+        options = self.upscale_actions + self.denoise_actions
+        # list of disabled options for each upscaler
+        config = {
+            'realcugan': [],
+            'realesrgan': [0] + list(range(4, 9)),
+            'waifu2x': [2],
+        }
+        disabled_options = config.get(self.display_values().get('upscaler'))
+
+        for index, option in enumerate(options):
+            option.setDisabled(index in disabled_options)
+
+        #error checking by changing the current selected option to 2x 
+        if not self.upscale_group.checkedAction().isEnabled():
+            options[1].setChecked(True)
+
     def image_upscale(self):
         '''
-        Image processing through Real-Cugan
+        Image processing through an upscaler
         '''
         #get all the data previously obtained
         values = self.display_values()
@@ -154,22 +196,28 @@ class MainWindow(QMainWindow):
             else:
                 outfolder = self.outfolder
 
+
+            upscaler = values.get('upscaler')
+            upscaler_path = self.get_upscaler(upscaler)
+
             outupscale, outdenoise = values.get('upscale'), values.get('denoise')
             #get complete path of output image
             outimage = str(
                 outfolder / (
-                    image_name +
-                    (f'_CUGAN{"_x" + outupscale if outupscale != "1" else ""}') +
-                    (f'_n{outdenoise}' if outdenoise != '-1' else '') + outext
+                    image_name + '_' + 
+                    self.upscaler_group.checkedAction().text().replace("Real-", "") + (f"_x{outupscale}" if outupscale != "1" else "") +
+                    (f'_n{outdenoise}' if outdenoise != '-1' and upscaler != 'realesrgan' else '') + outext
                     )
             )
 
             #start the conversion! run the program in the shell
-            args = [str(root / cugan), "-i",
-                    image, '-o', outimage, '-s', outupscale, '-n', outdenoise]
+            args = [str(upscaler_path), "-i",
+                    image, '-o', outimage, '-s', outupscale, '-n', 
+                    'realesrgan-x4plus-anime' if upscaler == 'realesrgan' else outdenoise]
+            print(args)
             subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
             print(outimage) 
-            # self.progress_bar.setValue(self.progress_bar.value() + increment)
+            # # self.progress_bar.setValue(self.progress_bar.value() + increment)
         
         # self.progress_bar.setValue(100)
 
