@@ -10,11 +10,6 @@ from PyQt5 import QtGui, uic
 
 #get current working dir because this program can be run from anywhere
 root = Path(__file__).parent
-if system() == 'Linux':
-    cugan = Path('realcugan-ncnn-vulkan-linux/realcugan-ncnn-vulkan')
-elif system() == 'Windows':
-    cugan = Path('realcugan-ncnn-vulkan-windows/realcugan-ncnn-vulkan.exe')
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
