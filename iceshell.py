@@ -101,7 +101,8 @@ class MainWindow(QMainWindow):
             'upscale': self.upscale_group.checkedAction().text(),
             'denoise': self.denoise_group.checkedAction().text(),
             'outext': self.ext_group.checkedAction().text(),
-            'upscaler': self.upscaler_group.checkedAction().text().replace('-', '').lower()
+            'upscaler': 
+            self.upscaler_group.checkedAction().text().replace('-', '').lower()
         }
 
     def folder_selector(self):
@@ -200,8 +201,11 @@ class MainWindow(QMainWindow):
             outimage = str(
                 outfolder / (
                     image_name + '_' + 
-                    self.upscaler_group.checkedAction().text().replace("Real-", "") + (f"_x{outupscale}" if outupscale != "1" else "") +
-                    (f'_n{outdenoise}' if outdenoise != '-1' and upscaler != 'realesrgan' else '') + outext
+                    self.upscaler_group.checkedAction().text().replace("Real-", "") +
+                    (f"_x{outupscale}" if outupscale != "1" else "") +
+                    (f'_n{outdenoise}' 
+                    if outdenoise != '-1' and upscaler != 'realesrgan' 
+                    else '') + outext
                     )
             )
 
