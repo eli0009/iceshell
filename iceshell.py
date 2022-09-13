@@ -213,7 +213,7 @@ class MainWindow(QMainWindow):
             #start the conversion! run the program in the shell
             args = [str(upscaler_path), "-i",
                     image, '-o', outimage, '-s', outupscale, '-n', 
-                    'realesrgan-x4plus-anime' if upscaler == 'realesrgan' else outdenoise]
+                    'realesr-animevideov3' if upscaler == 'realesrgan' else outdenoise]
             print(args)
             subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
             print(outimage) 
