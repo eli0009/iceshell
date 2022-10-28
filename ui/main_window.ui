@@ -2,24 +2,16 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>708</width>
-    <height>433</height>
-   </rect>
-  </property>
   <property name="minimumSize">
    <size>
     <width>708</width>
-    <height>433</height>
+    <height>427</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>708</width>
-    <height>433</height>
+    <height>427</height>
    </size>
   </property>
   <property name="acceptDrops">
@@ -58,7 +50,7 @@
      <x>0</x>
      <y>0</y>
      <width>708</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOutput">

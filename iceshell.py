@@ -95,6 +95,14 @@ class MainWindow(QMainWindow):
         popup.setWindowIcon(QtGui.QIcon(str(root / 'ui/res/logo.png')))
         popup.exec()
 
+    def complete(self, output):
+        '''
+        Handle the popup window that shows up when a upscale job is complete
+        '''
+        popup = CompleteWindow(output)
+        popup.setWindowIcon(QtGui.QIcon(str(root / 'ui/res/logo.png')))
+        popup.exec()
+
     def display_values(self):
         '''Return the current value of various option menus as a dict'''
         return {
@@ -226,6 +234,14 @@ class PopupWindow(QDialog):
     def __init__(self):
         super(PopupWindow, self).__init__()
         uic.loadUi(str(root / 'ui/popup.ui'), self)
+
+class CompleteWindow(QDialog):
+    """This class is for the popup window used when a upscale job is completed"""
+    def __init__(self, output: list):
+        super(PopupWindow, self).__init__()
+        uic.loadUi(str(root / 'ui/popup.ui'), self)
+
+
 
 
 if __name__ == '__main__':
