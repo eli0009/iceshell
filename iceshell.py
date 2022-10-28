@@ -99,8 +99,9 @@ class MainWindow(QMainWindow):
         '''
         Handle the popup window that shows up when a upscale job is complete
         '''
-        popup = CompleteWindow(output)
+        popup = CompleteWindow()
         popup.setWindowIcon(QtGui.QIcon(str(root / 'ui/res/logo.png')))
+        popup.set_text(output)
         popup.exec()
 
     def display_values(self):
@@ -174,7 +175,7 @@ class MainWindow(QMainWindow):
         # #prepare progressbar for processing
         # self.progress_bar.setValue(0)
         # increment = 100 // len(images)
-
+        output = []
         for image in images:
             """
             get the image's extension, name without extension, and the folder 
@@ -221,11 +222,13 @@ class MainWindow(QMainWindow):
             args = [str(upscaler_path), "-i",
                     image, '-o', outimage, '-s', outupscale, '-n', 
                     'realesr-animevideov3' if upscaler == 'realesrgan' else outdenoise]
-            print(args)
-            subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-            print(outimage) 
+            # print(args)
+            # subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            print(outimage)
+            output.append(outimage)
             # # self.progress_bar.setValue(self.progress_bar.value() + increment)
         
+        self.complete(output)
         # self.progress_bar.setValue(100)
 
 
@@ -237,9 +240,14 @@ class PopupWindow(QDialog):
 
 class CompleteWindow(QDialog):
     """This class is for the popup window used when a upscale job is completed"""
-    def __init__(self, output: list):
-        super(PopupWindow, self).__init__()
-        uic.loadUi(str(root / 'ui/popup.ui'), self)
+    def __init__(self):
+        super(CompleteWindow, self).__init__()
+        uic.loadUi(str(root / 'ui/completed.ui'), self)
+
+        self.text = self.findChild(QLabel, 'label')
+
+    def set_text(self, output):
+        self.text.setText('\n'.join(output))
 
 
 
