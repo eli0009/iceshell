@@ -2,11 +2,11 @@
 
 Iceshell is a GUI program that upscales and denoises anime-style images. Iceshell allows you to choose among 3 different AI super-resolution models: Real-CUGAN, Real-ESRGAN and Waifu2x
 
-Iceshell is available on Linux and Windows.
+Available on Linux and Windows.
 
 ![Preview](preview.png)
 
-This program can make your images better and sharper! Below is a comparison of different upscalers' performance. Imagemagick upscale is the result you would get from a conventional image manipulation program such as Krita or Photoshop, which doesn't use AI model.
+This program can make your images better! Below is a comparison of different upscalers. Imagemagick upscale is the result you would get from a conventional image manipulation program such as Krita or Photoshop, which doesn't use AI model.
 
 Original image vs ImageMagick vs Real-CUGAN vs Real-ESRGAN vs Waifu2x:
 ![comparison](comparison.png)
