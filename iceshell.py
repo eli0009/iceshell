@@ -1,5 +1,6 @@
 import sys, subprocess
 import breeze_resources
+import stat
 from platform import system
 from pathlib import Path
 from ddlabel import DdLabel
@@ -204,6 +205,8 @@ class MainWindow(QMainWindow):
 
             upscaler = values.get('upscaler')
             upscaler_path = self.get_upscaler(upscaler)
+            # add exec permission
+            upscaler_path.chmod(upscaler_path.stat().st_mode | stat.S_IEXEC)
 
             outupscale, outdenoise = values.get('upscale'), values.get('denoise')
             #get complete path of output image
