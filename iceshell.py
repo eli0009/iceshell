@@ -223,7 +223,7 @@ class MainWindow(QMainWindow):
                     image, '-o', outimage, '-s', outupscale, '-n', 
                     'realesr-animevideov3' if upscaler == 'realesrgan' else outdenoise]
             # print(args)
-            # subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
             print(outimage)
             output.append(outimage)
             # # self.progress_bar.setValue(self.progress_bar.value() + increment)
